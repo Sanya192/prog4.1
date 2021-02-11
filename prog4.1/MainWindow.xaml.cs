@@ -21,18 +21,24 @@ namespace prog4._1
     public partial class MainWindow : Window
     {
         private static Random r = new Random();
+
         private string masterPassword = "123";
         private string currPassword = string.Empty;
-        bool active = false;
+        private bool active = false;
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        private void Label_MouseMove(object sender,RoutedEventArgs e)
+        /// <summary>
+        /// Metódus ami kezeli ha egy Labelben mozgás van. Grid esetében is meghívodik.
+        /// </summary>
+        /// <param name="sender">Ez a grid mivel nem akartam mindegyik label alá beletenni.</param>
+        /// <param name="e">Az event argumentuma</param>
+        private void Grid_MouseMove(object sender,RoutedEventArgs e)
         {
             Label label = e.Source as Label;
-            if (label!=null)
+            // Így kezelve van ha a Grid hívta volna meg az eventet.
+            if (label != null)
             {
                 label.BorderBrush = new SolidColorBrush(Color.FromRgb((byte)r.Next(255), (byte)r.Next(255), (byte)r.Next(255)));
                 if (active)
@@ -43,16 +49,24 @@ namespace prog4._1
                     }
                     label.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                 }
+                e.Handled = true;
             }
-            
-            e.Handled = true;
         }
-
+        /// <summary>
+        /// Elkezdi a jelszó beírását.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             currPassword = string.Empty;
             active = true;
         }
+        /// <summary>
+        /// A jelszó be van fejezve. Ha eltalálta feldob egy message-t.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
             foreach (var item in (sender as Grid).Children)

@@ -18,7 +18,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         </Style>
     </Window.Resources>
-    <Grid Label.MouseMove="Label_MouseMove" MouseDown="Grid_MouseDown" MouseUp="Grid_MouseUp" Background="White" >
+    <Grid MouseMove="Grid_MouseMove" MouseDown="Grid_MouseDown" MouseUp="Grid_MouseUp" Background="White" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition  />
             <ColumnDefinition />
