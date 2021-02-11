@@ -34,7 +34,7 @@ namespace prog4._1
         /// </summary>
         /// <param name="sender">Ez a grid mivel nem akartam mindegyik label alá beletenni.</param>
         /// <param name="e">Az event argumentuma</param>
-        private void Grid_MouseMove(object sender,RoutedEventArgs e)
+        private void Grid_MouseMove(object sender, RoutedEventArgs e)
         {
             Label label = e.Source as Label;
             // Így kezelve van ha a Grid hívta volna meg az eventet.
@@ -69,16 +69,19 @@ namespace prog4._1
         /// <param name="e"></param>
         private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            //vissza színezzük a háttért.
             foreach (var item in (sender as Grid).Children)
             {
                 Label label = item as Label;
-                if (label!=null)
+                if (label != null)
                 {
-                    label.Background= new SolidColorBrush(Colors.Cyan);
-                    
+                    // A style szerinti értékre állítja vissza a hátteret.
+   
+                    label.ClearValue(BackgroundProperty);
                 }
             }
-            if (currPassword==masterPassword)
+
+            if (currPassword == masterPassword)
             {
                 MessageBox.Show("GG");
             }
